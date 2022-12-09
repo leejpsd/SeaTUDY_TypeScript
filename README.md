@@ -136,16 +136,20 @@ setInterval의 오차를 없애기 위해 시,분,초 중에 초만 setInterval�
 
 카테고리를 추가하고 투두리스트 입력창을 열어 카테고리에 맞는 투두리스트를 추가할 수 있다. 
 하지만 .map() 함수를 이용해 그리고 있어 하나의 투두리스트 입력창만 열고 싶지만 모든 투두리스트 의 입력창이 열린다. 이를 해결하기위해 처음으로 .map()의 Index 파라미터를 제대로 사용해보았다.
-> ```javascript
+
+```javascript
+
   const [todoInputShow, setTodoInputShow] = useState<any>([
     false,
     false,
     false,
     false,
   ]);
-  ```
   
->    ```javascript
+```
+  
+```javascript
+
   function onSubmitHandler() {
    if (dateTodos.length < 4)
     dispatch(__postCategory({ categoryName: category, selectDate: date }));
@@ -153,15 +157,17 @@ setInterval의 오차를 없애기 위해 시,분,초 중에 초만 setInterval�
     alert("4개까지만 생성가능");
   }
     setCategory("");
->   }
-  ```
->   ```javascript
+}
+```
+
+```javascript
   function todoBoxIndex(index: number) {
     let temp = [...todoInputShow];
     temp[index] = !temp[index];
     setTodoInputShow(temp);
   }
-```
+  ```
+  
  ![](https://velog.velcdn.com/images/leejpsd/post/f6e01e5e-9c84-4d06-bb93-688fb78d4d0c/image.png)![](https://velog.velcdn.com/images/leejpsd/post/e92b39d1-aa7d-450c-8d44-bb0786fbc713/image.gif)
 
 
