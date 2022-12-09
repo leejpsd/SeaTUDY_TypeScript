@@ -120,11 +120,13 @@
 ### 🔵 FE: CheckIn & CheckOut 
 #### 체크인 시스템의 첫번째 문제와 해결
 > ![](https://velog.velcdn.com/images/leejpsd/post/0403a2d4-983e-4711-a7a7-574d0e7b3d17/image.png)
+
 타이머는 헤더에 존재하고 타이머 버튼은 형제컴포넌트인 메인페이지에 존재한다. 타이머를 작동시키기 위해 리덕스에 isStudy란 state를 만들고 이 조건을 이용해 타이머를 작동시켰다.
 또한 새로고침시에도 체크인 상태라면 서버에서 isStudy :true 값을 받아 타이머가 자동으로 시작해야하는 문제를 해결하였다.
 
 #### 체크인 시스템의 두번째 문제와 해결
 > ![](https://velog.velcdn.com/images/leejpsd/post/c0bbb0ed-fea9-4321-89e9-a25fa1bef7bd/image.png)
+> 
 타이머는 setInterval을 사용하였는데 처음엔 서버에서 받아오는 시,분,초를 각각 setInterval을 이용해 시간을 늘렸으나 시간이 흐를수록 각각 오차가 생겨 아예 다른 시간이 되는 문제가 생겼다.
 setInterval의 오차를 없애기 위해 시,분,초 중에 초만 setInterval을 이용하여 1초에 한번씩 +1 을 해주고 분은 초가 60씩 돌때마다(60의 배수가 될때마다) +1 을 시켜준다. 
 마찬가지로 시 또한 분이 60씩 돌때마다(60의 배수가 될때마다) +1 을 시켜주었다. 즉 setInterval은 초만 이용하여 오차를 없앨수 있었다.
