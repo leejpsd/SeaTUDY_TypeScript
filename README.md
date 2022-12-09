@@ -174,7 +174,8 @@ setInterval의 오차를 없애기 위해 시,분,초 중에 초만 setInterval�
   }
   ```
   
- ![](https://velog.velcdn.com/images/leejpsd/post/f6e01e5e-9c84-4d06-bb93-688fb78d4d0c/image.png)![](https://velog.velcdn.com/images/leejpsd/post/e92b39d1-aa7d-450c-8d44-bb0786fbc713/image.gif)
+>  ![](https://velog.velcdn.com/images/leejpsd/post/f6e01e5e-9c84-4d06-bb93-688fb78d4d0c/image.png)
+>  ![](https://velog.velcdn.com/images/leejpsd/post/e92b39d1-aa7d-450c-8d44-bb0786fbc713/image.gif)
 
 
   
@@ -184,16 +185,17 @@ setInterval의 오차를 없애기 위해 시,분,초 중에 초만 setInterval�
 
 - 25마리의 물고기 left,top 좌표를 넣을 state생성
 
->   ```javascript
+```javascript
 const [fishPos, setFishPos] = useState(
     Array.from({ length: 25 }, (v, i) => {
       return [0, 0];
     })
   );
-  
+```
+
 - 드래그가 도중에 실행되는 함수
 
->   ```javascript
+```javascript
 function dragHandler (e: any, i: number) {
     let tempData = [...fishPos];
     tempData[i][0] = e.target.offsetLeft + e.clientX - clientPos.x;
@@ -204,10 +206,11 @@ function dragHandler (e: any, i: number) {
     clientPosTemp["y"] = e.clientY;
     setClientPos(clientPosTemp);
   };
+```
 
 - dragEndHandler 즉 드래그가 종료되는 시점에 서버에 해당 물고기의 index값과 left,top 좌표를 저장한다.
 
->  ```javascript
+```javascript
 function dragEndHandler (e: any, i: number) {
     let tempData = [...fishPos];
     tempData[i][0] = e.target.offsetLeft + e.clientX - clientPos.x;
@@ -230,10 +233,11 @@ function dragEndHandler (e: any, i: number) {
     document.body.removeAttribute("style");
     document.body.style.overflow = "hidden";
   };
+```
 
 - 서버에 저장해둔 물고기 좌표의 배열(positionData)을 index와 비교하여 inline스타일로 left와 top에 넣어준다.
 
-> ```javascript
+```javascript
 <InvenLayout ref={containerRef}>
       {fishImages.map((data: any, i: number) => {
         return (
@@ -259,12 +263,12 @@ function dragEndHandler (e: any, i: number) {
               src={data.image}
               alt=""
             />
-
+```
 
 #### Drag and Drop 시스템의 두번째 문제와 해결
 물고기 좌표(positionData)를 그대로 서버에 저장하고 받아와서 받아온 데이터를 그대로 물고기 position에 넣어주었지만 넣는 순간 내가 서버로 보내는 물고기 좌표값 자체가 이상하게 틀어진다. 이를 해결하기 위해 서버에서 받아온 데이터를 다시한번 State에 저장해 해결했다.
               
-> ```javascript
+```javascript
 useEffect(() => {
     let tempData = [...fishPos];
     positionData.map((v) => {
@@ -272,9 +276,9 @@ useEffect(() => {
     });
     setFishPos([...tempData]);
   }, [positionData]);
+```              
               
-              
-  > ```javascript
+```javascript
           <Label key={i}>
             <FishImg
               draggable={userPoint >= data.point ? true : false}
@@ -290,12 +294,12 @@ useEffect(() => {
               alt=""
               onContextMenu={(e) => FishDeleteHandler(e, i)}
             />              
-
+```
 
               
 ### 🔵 FE: Websoket 
               
-![](https://velog.velcdn.com/images/leejpsd/post/3c291d68-b90c-4d2a-85ea-c29cd08ecbaa/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/3c291d68-b90c-4d2a-85ea-c29cd08ecbaa/image.png)
 
 채팅에 글자마다 혹은 send 등 이벤트가 일어날때마다 소켓이 실행된다.
               
@@ -303,12 +307,12 @@ useEffect와 의존성배열을 이용해보기도하고 데이터를 저장하�
               
 소켓을 실행하는 함수를  함수 바깥에서 실행해서 페이지가 렌더링 되더라도 한번만 연결되게 수정하였다.
               
-![](https://velog.velcdn.com/images/leejpsd/post/c952658d-2e44-4bdb-9d16-0a0ff09a9627/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/c952658d-2e44-4bdb-9d16-0a0ff09a9627/image.png)
 
 
               
 ### 🔵 FE: ASMR 
-![](https://velog.velcdn.com/images/leejpsd/post/c68e40ba-86f1-4e41-8cc7-3ecc0933e0e1/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/c68e40ba-86f1-4e41-8cc7-3ecc0933e0e1/image.png)
 
 audio.play()가 최초엔 실행이 되지만 audio.pause() 함수가 정상적으로 작동하지 않는다. 
 
@@ -316,13 +320,14 @@ audio.play()가 최초엔 실행이 되지만 audio.pause() 함수가 정상적�
 
 생각보다 나와 같은 문제를 겪는 글들이 굉장히 많았다. 스택오버플로우를 참조하여 URL을 바로 변수에 할당하는 것이 아닌 useState를 이용해 저장하여 사용하였고 문제가 해결되었다.
               
-![](https://velog.velcdn.com/images/leejpsd/post/ae531ad4-12a1-495c-8516-14348cc8c695/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/ae531ad4-12a1-495c-8516-14348cc8c695/image.png)
               
 
 ### 🔵 FE: PrivateRoute    
+
 - Router.tsx
 
-> ``` javascript 
+``` javascript 
 const Router = () => {
   const token: string = process.env.REACT_APP_TOKEN as string;
   // const token: string = getCookie("token") as string;
@@ -361,18 +366,20 @@ const Router = () => {
   );
 };
 export default Router;
+```
 
 - PrivateRoute.tsx
 
-> ```jfunction 
+```jfunction 
 PrivateRoute({ token, component: Component }) {
   return token 
   ? (Component) 
   : (<Navigate to="/login" {...alert("로그인이 필요한 페이지입니다.")} />);
 }
 export default PrivateRoute;
+```
 
-![](https://velog.velcdn.com/images/leejpsd/post/6025d3d7-5df1-40bc-8b96-9c6669f044b3/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/6025d3d7-5df1-40bc-8b96-9c6669f044b3/image.png)
 
 프라이빗라우터를 사용하여 토큰이 있어야 홈 화면에 입장이 가능한데 로그인시 토큰을 저장해도 페이지 접근이 불가능했다.
 
@@ -380,7 +387,7 @@ setTimeout을 이용해 토큰을 저장하고 몇초 후 페이지에 접근하
 
 라우터에서 검증을 삭제하고 페이지 컴포넌트에서 쿠키에 저장한 토큰을 불러와 useEffect를 이용 토큰이 없을경우 접근이 불가능하게 만들었다.
 
-> ```javascript
+```javascript
 useEffect(() => {
     if (token === undefined) {
       navigate("/login");
@@ -388,15 +395,15 @@ useEffect(() => {
     }
     document.body.style.overflow = "hidden";
   }, [token]);
-
+```
 
 ### 🔵 FE: 로그인 단계에서 불필요한 통신과 에러 
-![](https://velog.velcdn.com/images/leejpsd/post/4d907fe4-7829-4065-9f92-793ee73afd7b/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/4d907fe4-7829-4065-9f92-793ee73afd7b/image.png)
 
 위의 프라이빗라우터와 마찬가지인 이유로 로그인 단계에서 이미 렌더링이 일어나 헤더에 있는 통신들이 useEffect에 의해 시작된다. 하지만 아직 로그인을 하여 토큰을 저장하지 않았으므로 token은 undefind 가 되어 당연하게 에러가 난다.
 위의 프라이빗라우터를 해결하며 힌트를 얻어 로그인전 불필요한 통신과 에러를 방지하기 위해 useEffect에 조건과 의존성배열에 token을 추가해 에러를 없앴다.
 
->   ```javascript
+```javascript
 useEffect(() => {
     if (token !== undefined) {
       dispatch(__getDayMyRank());
@@ -406,7 +413,8 @@ useEffect(() => {
         dispatch(__getCheckOutTimer());
       };
     }
->   }, [token]);
+  }, [token]);
+```
 
   ----
 ### 🟠 BE: 채팅방 인원수 카운트 오류
@@ -415,8 +423,8 @@ useEffect(() => {
 중복허용이 되지 않는 Set을 이용: 입장시 세션ID(키)와 닉네임(밸류)을 저장한 후, 닉네임(밸류)을 기준으로 Set에 저장하여 중복카운트 방지 → 입장은 중복없이 카운트가 되었으나, 퇴장시 아직 하나의 브라우저가 남아있음에도 인원이 -1명이 됨(유저가 여전히 채팅방에 있음에도 나간 것으로 확인)
 
 입장시, 1번과 동일하게 value 기준으로 Set을 만들어 카운트(중복제거)하고, 퇴장시 세션ID(키)를 찾아 제거 후 다시 value기준 Set으로 카운트
-![](https://velog.velcdn.com/images/leejpsd/post/2887843a-dd16-4dc9-9d25-df47f844af3e/image.png)
-![](https://velog.velcdn.com/images/leejpsd/post/ed97c2ec-a0ac-4615-8a20-ca16661d34ea/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/2887843a-dd16-4dc9-9d25-df47f844af3e/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/ed97c2ec-a0ac-4615-8a20-ca16661d34ea/image.png)
 
               
 ### 🟠 BE: 시간 세팅
@@ -427,7 +435,7 @@ useEffect(() => {
 하지만, 체크인/아웃을 할 때마다 -5시간을 적용해줘야해서 성능의 저하가 우려
 
 서버시간자체를 자정에 하루를 초기화하는 것이 아닌 오전5시에 초기화되도록 로직 수정. 체크인/체크아웃 시간에서 -5시간을 할 필요없이 현재 시간 자체를 DB에 저장하여도 같은 하루로 설정되도록 함
-![](https://velog.velcdn.com/images/leejpsd/post/16b0cf6a-e2cc-4258-a59b-417967901e68/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/16b0cf6a-e2cc-4258-a59b-417967901e68/image.png)
               
 
 ### 🟠 BE: 시간 세팅
@@ -437,7 +445,7 @@ GitHub Action으로 자동배포시에 .gitignore 로 설정된 application.prop
 따라서, GitHub 시크릿에 값을 하나하나 설정하여 빌드 때에 이 설정값들이 지정될 수 있도록 하여 빌드성공. 하지만, 설정값이 많은데 일일이 값을 시크릿 설정으로 해줘야하는 번거로움이 있음
 
 GitHub 시크릿에 하나하나 설정값을 지정하지 않고 전체 설정값을 GitHub 시크릿에 저장해두고, CI/CD를 진행할 때 application.properties 파일을 생성한 후 이 값 전체를 넣어주도록 설정함
-![](https://velog.velcdn.com/images/leejpsd/post/72407c4b-d2a6-47b0-af9f-1fa4327ccef9/image.png)
+> ![](https://velog.velcdn.com/images/leejpsd/post/72407c4b-d2a6-47b0-af9f-1fa4327ccef9/image.png)
 
 ---
 ## 🏍 프론트엔드 최적화 
