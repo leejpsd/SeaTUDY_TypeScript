@@ -141,7 +141,7 @@ setInterval의 오차를 없애기 위해 시,분,초 중에 초만 setInterval�
     false,
     false,
   ]);
-  
+  ```
   
 >    ```javascript
   function onSubmitHandler() {
@@ -152,14 +152,14 @@ setInterval의 오차를 없애기 위해 시,분,초 중에 초만 setInterval�
   }
     setCategory("");
 >   }
-  
+  ```
 >   ```javascript
   function todoBoxIndex(index: number) {
     let temp = [...todoInputShow];
     temp[index] = !temp[index];
     setTodoInputShow(temp);
   }
-
+```
  ![](https://velog.velcdn.com/images/leejpsd/post/f6e01e5e-9c84-4d06-bb93-688fb78d4d0c/image.png)![](https://velog.velcdn.com/images/leejpsd/post/e92b39d1-aa7d-450c-8d44-bb0786fbc713/image.gif)
 
 
